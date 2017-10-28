@@ -24,32 +24,17 @@ int main() {
 
 	Librarian librarian;
 	librarian.CreateBookshelf(N);
-	
-	//Literature **_Literature = NULL;
-	//_Literature = new Literature *[10];
-	//int p = 0;
-	
-
-	Rack *_Racks = NULL;
-	_Racks = new Rack[5];
-	_Racks[0] = Rack(5,1);
 
 	for (int i = 0; i <7; i++) {
-		//_Racks[0].AddLiterature(Book(idBook[i], NameBook[i], AuthorBook[i], PublishingHouseBook[i]));
-		//Book k(Book(idBook[i], NameBook[i], AuthorBook[i], PublishingHouseBook[i]));
-		//_Literature[p++] = new Book(k);
-
 		librarian.AddLiteratureInRack(Book(idBook[i], NameBook[i], AuthorBook[i], PublishingHouseBook[i]));
-		librarian.GetAllLiteratureInRacks();
 	}
 	for (int i = 0; i < 3; i++) {
-		//_Literature[p++] = new Journal(idJournal[i], NameJournal[i], SubjectsJournal[i], PeriodicityJournal[i]);
 		librarian.AddLiteratureInRack(Journal(idJournal[i], NameJournal[i], SubjectsJournal[i], PeriodicityJournal[i]));
 	}
 
 	
 	while (true) {
-		//system("cls");
+		system("cls");
 		cout << "1 - Показать книги на всех полках" << endl;
 		cout << "2 - Поиск по автору книги" << endl;
 		switch (cin.get()) {

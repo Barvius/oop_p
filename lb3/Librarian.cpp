@@ -20,7 +20,7 @@ void Librarian::GetAllLiteratureInRack(int RackNum) {
 
 void Librarian::CreateBookshelf(int RackNums) {
 	_CountRacks = RackNums;
-	_Racks = new Rack[_CountRacks];
+	_Racks = new Rack[RackNums];
 	for (int i = 0; i < _CountRacks; i++) {
 		_Racks[i] = Rack(rand() % 7 + 1, i + 1);
 

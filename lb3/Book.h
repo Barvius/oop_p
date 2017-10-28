@@ -13,7 +13,6 @@ public:
 	char* GetPublishingHouse();
 	void SetPublishingHouse(char*);
 	void Info();
-
 	Book &operator = (Book &obj);
 	Book();
 	Book(Book&);

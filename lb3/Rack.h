@@ -13,6 +13,7 @@ private:
 	int _Size;
 	int _CountBooks = 0;
 	Literature **_Literature = NULL;
+	void _Move();
 public:
 	bool AddLiterature(Journal&);
 	bool AddLiterature(Book&);
@@ -20,7 +21,6 @@ public:
 	void GetAllLiteratureInRack();
 	void GetBookByName(char*);
 	Rack();
-	Rack(Rack&);
 	Rack(int, int);
 	~Rack();
 };

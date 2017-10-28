@@ -2,12 +2,26 @@
 
 using namespace std;
 
+void Rack::_Move() {
+	Literature **tmp = new Literature *[_CountBooks];
+	for (size_t i = 0; i < _CountBooks; i++) {
+		tmp[i] = _Literature[i];
+	}
+	delete[] _Literature;
+	_Literature = new Literature *[_CountBooks + 1];
+	for (size_t i = 0; i < _CountBooks; i++) {
+		_Literature[i] = tmp[i];
+	}
+	delete[] tmp;
+	_CountBooks++;
+}
+
 bool Rack::AddLiterature(Journal& obj) {
 	if (_CountBooks == _Size) {
 		return false;
 	} else {
-		_Literature[_CountBooks] = new Journal(obj);
-		_CountBooks++;
+		_Move();
+		_Literature[_CountBooks-1] = new Journal(obj);
 		return true;
 	}
 }
@@ -16,15 +30,15 @@ bool Rack::AddLiterature(Book& obj) {
 	if (_CountBooks == _Size) {
 		return false;
 	} else {
-		_Literature[_CountBooks] = new Book(obj);
-		_CountBooks++;
+		_Move();
+		_Literature[_CountBooks-1] = new Book(obj);
 		return true;
 	}
 }
 
 void Rack::GetAllLiteratureInRack() {
 	cout << "На полке " << _NumberRack << " (" << _CountBooks << " из " << _Size << ")" << endl;
-	for (size_t i = 1; i < _CountBooks; i++) {
+	for (size_t i = 0; i < _CountBooks; i++) {
 		_Literature[i]->Info();
 		cout << endl;
 	}
@@ -48,19 +62,14 @@ Rack::Rack() {
 
 }
 
-Rack::Rack(Rack &obj) {
-
-}
-
 Rack::Rack(int n, int number) {
 	_Size = n;
 	_NumberRack = number;
-	_Literature = new Literature *[n];
 }
 
 Rack::~Rack() {
-	for (int i = 0; i < _Size-1; i++) {
-//		delete[] _Literature[i];
+	for (int i = 0; i < _CountBooks; i++) {
+		delete[] _Literature[i];
 	}
 	delete[] _Literature;
 }
